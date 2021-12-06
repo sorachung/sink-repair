@@ -1,0 +1,16 @@
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 1.25em;
+  margin-top: 0.5em;
+}
+
+.button {
+  background-color: purple;
+  color: white;
+  margin: 1.5em 0;
+  padding: 1em;
+}
