@@ -42,3 +42,37 @@ export const deleteRequest = (id) => {
           }
       )
 }
+
+export const fetchPlumbers = () => {
+  return fetch(`${API}/plumbers`)
+    .then(response => response.json())
+    .then(plumbers => {
+      applicationState.plumbers = plumbers;
+    })
+}
+
+export const getPlumbers = () => applicationState.plumbers.map((plumber) => ({ ...plumber }))
+
+export const saveCompletion = (userServiceRequest) => {
+  const fetchOptions = {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json"
+    },
+    body: JSON.stringify(userServiceRequest)
+  }
+
+  return fetch(`${API}/completions`, fetchOptions)
+    .then(response => response.json())
+    .then( () => {
+      mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+    })
+}
+
+export const fetchCompletions = () => {
+  return fetch(`${API}/completions`)
+    .then(response => response.json())
+    .then(completions => applicationState.completions = completions)
+}
+
+export const getCompletions = () => applicationState.completions.map(completion => ({ ...completion }))

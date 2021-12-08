@@ -1,6 +1,22 @@
 {
-  "plumbers": [],
-  "completions": [],
+  "plumbers": [
+    {
+      "id": 1,
+      "name": "Maude"
+    },
+    {
+      "id": 2,
+      "name": "Merle"
+    }
+  ],
+  "completions": [
+    {
+      "requestId": 2,
+      "plumberId": 1,
+      "dateCreated": 1638984007222,
+      "id": 1
+    }
+  ],
   "requests": [
     {
       "id": 1,
@@ -15,6 +31,13 @@
       "budget": "300",
       "neededBy": "2021-12-22",
       "id": 2
+    },
+    {
+      "description": "out of control toilet",
+      "address": "234 Whereever Way",
+      "budget": "400",
+      "neededBy": "2021-12-29",
+      "id": 3
     }
   ]
 }
