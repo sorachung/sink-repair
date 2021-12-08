@@ -9,7 +9,7 @@ export const Requests = () => {
         <ul>
             ${
                 requests.map(request => `
-                  <li>
+                ${completions.find(completion => completion.requestId === request.id) ? `<li class="complete">` : `<li>`}
                     ${request.description}
                     ${completions.find(completion => completion.requestId === request.id) ? `<select class="plumbers" hidden="hidden" id="plumbers">` : `<select class="plumbers" id="plumbers">`}
                         <option value="">Choose</option>
@@ -28,7 +28,15 @@ export const Requests = () => {
                     </button>
                     
                     </li>
-                `).join("")
+                `).sort((element) => {
+                    // if (completions.find(completion => completion.requestId === element.id)) {
+                    if (element.includes("hidden")) {
+                        return 1
+                    } else {
+                        return -1
+                    }
+
+                }).join("")
             }
         </ul>
     `
