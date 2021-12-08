@@ -8,10 +8,12 @@ export const Requests = () => {
     let html = `
         <ul>
             ${
-                requests.map(request => `
-                ${completions.find(completion => completion.requestId === request.id) ? `<li class="complete">` : `<li>`}
+                requests.map(request => {
+                    let complete = completions.find(completion => completion.requestId === request.id) ? true : false;
+                    return `
+                ${complete ? `<li class="complete">` : `<li>`}
                     ${request.description}
-                    ${completions.find(completion => completion.requestId === request.id) ? `<select class="plumbers" hidden="hidden" id="plumbers">` : `<select class="plumbers" id="plumbers">`}
+                    ${complete ? `<select class="plumbers" hidden="hidden" id="plumbers">` : `<select class="plumbers" id="plumbers">`}
                         <option value="">Choose</option>
                         ${
                             plumbers.map(
@@ -28,7 +30,7 @@ export const Requests = () => {
                     </button>
                     
                     </li>
-                `).sort((element) => {
+                `}).sort((element) => {
                     // if (completions.find(completion => completion.requestId === element.id)) {
                     if (element.includes("hidden")) {
                         return 1
