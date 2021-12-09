@@ -15,8 +15,31 @@ export const fetchRequests = () => {
     });
 };
 
-export const getRequests = () =>
-  applicationState.requests.map((request) => ({ ...request }));
+// export const getRequests = () => {
+//   return applicationState.requests.map((request) => ({ ...request }))
+//   .sort((element) => {
+//     if (applicationState.completions.find(completion => completion.requestId === element.id)) {
+//         return 1
+//     } else {
+//         return -1
+//     }
+
+// })
+// };
+export const getRequests = () => {
+  const copyOfData =  applicationState.requests.map((request) => ({ ...request }))
+  copyOfData.forEach((request) => {
+    if (applicationState.completions.find(completion => completion.requestId === request.id)) {
+        request.complete = true
+    } else {
+        request.complete = false
+    }
+
+})
+return copyOfData.sort((request1, request2) => {
+  return request1.complete - request2.complete
+})
+};
 
 export const sendRequest = (userServiceRequest) => {
   const fetchOptions = {

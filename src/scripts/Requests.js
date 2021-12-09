@@ -9,11 +9,10 @@ export const Requests = () => {
         <ul>
             ${
                 requests.map(request => {
-                    let complete = completions.find(completion => completion.requestId === request.id) ? true : false;
                     return `
-                ${complete ? `<li class="complete">` : `<li>`}
+                ${request.complete ? `<li class="complete">` : `<li>`}
                     ${request.description}
-                    ${complete ? `<select class="plumbers" hidden="hidden" id="plumbers">` : `<select class="plumbers" id="plumbers">`}
+                    ${request.complete ? `<select class="plumbers" hidden="hidden" id="plumbers">` : `<select class="plumbers" id="plumbers">`}
                         <option value="">Choose</option>
                         ${
                             plumbers.map(
@@ -30,15 +29,7 @@ export const Requests = () => {
                     </button>
                     
                     </li>
-                `}).sort((element) => {
-                    // if (completions.find(completion => completion.requestId === element.id)) {
-                    if (element.includes("hidden")) {
-                        return 1
-                    } else {
-                        return -1
-                    }
-
-                }).join("")
+                `}).join("")
             }
         </ul>
     `
