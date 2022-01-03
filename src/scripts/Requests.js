@@ -11,7 +11,7 @@ export const Requests = () => {
                 requests.map(request => {
                     return `
                 ${request.complete ? `<li class="complete">` : `<li>`}
-                    ${request.description}
+                    ${request.description} - ${request.address} - $${request.budget} - needed by ${request.neededBy}
                     ${request.complete ? `<select class="plumbers" hidden="hidden" id="plumbers">` : `<select class="plumbers" id="plumbers">`}
                         <option value="">Choose</option>
                         ${
